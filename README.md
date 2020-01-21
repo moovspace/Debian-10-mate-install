@@ -261,10 +261,12 @@ export PS1="\[\e[32m\][\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]
 ```
 
 ### Themes
+cd; mkdir .themes
 ```bash
 sudo apt install adapta-gtk-theme
 ```
 
 ### Icons
+cd; mkdir .icons
 - https://www.gnome-look.org/p/1284047
 - https://www.gnome-look.org/p/1305251
