@@ -131,7 +131,7 @@ server {
     index index.php index.html index.htm;
     
     # Domain, host
-    server_name domain.xx;
+    server_name domain.xx www.domain.xx;
 
     location / {
         # Get file or folder or error
@@ -154,6 +154,24 @@ server {
     }
 }
 ```
+
+### SSL/TLS virtualhost (all virtualhosts in one file)
+sudo nano /etc/nginx/sites-available/default
+```bash
+server {
+    # http, https in one virtualhost
+    listen              80;
+    listen              443 ssl;
+    root /var/www/html/domain.xx;
+    server_name         domain.xx www.domain.xx;
+    ssl_certificate     www.domain.xx.crt; # cert or with bundle cert
+    ssl_certificate_key www.domain.xx.key;
+    ...
+}
+```
+
+### For more nginx ssl
+http://nginx.org/en/docs/http/configuring_https_servers.html
 
 ### Domain hosts for local domains
 sudo nano /etc/hosts
