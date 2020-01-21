@@ -4,17 +4,17 @@ How to install debian 10 mate desktop with lemp server, firewall and sublime tex
 ## Create bootable USB from distro iso (as root user)
 ```diff
 # Login as root
-! su
+su
 
 # See partitions, disks
-! fdisk -l
-! df -h
+fdisk -l
+df -h
 
 # Burn iso on usb
-+ sudo  if=debian.iso of=/dev/sdb
+dd  if=debian.iso of=/dev/sdb
 
 # Or (if install errors)
-+ sudo  if=debian.iso of=/dev/sdb1
+dd  if=debian.iso of=/dev/sdb1
 ```
 
 ### Install debian 10
