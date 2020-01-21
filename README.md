@@ -1,5 +1,5 @@
-# Debian-10-mate-install
-How to install debian 10 mate desktop with lemp server, firewall and sublime text 3 editor.
+# Debian 10 Mate desktop install
+How to install Debian 10 mate desktop with WiFi, LEMP server, firewall and sublime text 3 editor.
 
 ## Create bootable USB from distro iso (as root user)
 ```diff
