@@ -138,7 +138,7 @@ server {
         # try_files $uri $uri/ =404;
         
         # Get file or folder or redirect uri to url param in index.php
-        try_files $uri $uri/ /index.php?q=$uri&$args;
+        try_files $uri $uri/ /index.php?url=$uri&$args;
     }
 
     location ~ \.php$ {
