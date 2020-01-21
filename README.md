@@ -184,6 +184,11 @@ server {
 }
 ```
 
+### Test Ssl cert
+```bash
+openssl s_client -connect domain.xx:443
+```
+
 ### For more nginx ssl
 http://nginx.org/en/docs/http/configuring_https_servers.html
 
