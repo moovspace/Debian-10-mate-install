@@ -159,9 +159,15 @@ server {
 sudo nano /etc/nginx/sites-available/default
 ```bash
 server {
-    # http, https in one virtualhost
-    listen              80;
-    listen              443 ssl;
+    # Http
+    listen  80;
+    listen  [::]:80;
+    
+    # Https
+    listen  443 ssl http2;
+    listen  [::]:443 ssl http2;
+    
+    # Document root
     root /var/www/html/domain.xx;
     server_name         domain.xx www.domain.xx;
     
@@ -172,6 +178,7 @@ server {
     # With sslforfree.com or letsencrypt.org ssl
     # ssl_certificate     www.domain.xx.crt; # cert or with bundle cert
     # ssl_certificate_key www.domain.xx.key;
+    
     ...
 }
 ```
