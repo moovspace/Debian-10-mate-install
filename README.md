@@ -170,6 +170,7 @@ server {
     # Document root
     root /var/www/html/domain.xx;
     server_name         domain.xx www.domain.xx;
+    http2_push_preload on;
     
     # With self-signed
     ssl_certificate     /etc/ssl/certs/ssl-cert-snakeoil.pem;
