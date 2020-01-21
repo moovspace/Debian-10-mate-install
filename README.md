@@ -164,8 +164,14 @@ server {
     listen              443 ssl;
     root /var/www/html/domain.xx;
     server_name         domain.xx www.domain.xx;
-    ssl_certificate     www.domain.xx.crt; # cert or with bundle cert
-    ssl_certificate_key www.domain.xx.key;
+    
+    # With self-signed
+    ssl_certificate     /etc/ssl/certs/ssl-cert-snakeoil.pem;
+    ssl_certificate_key /etc/ssl/private/ssl-cert-snakeoil.key;
+    
+    # With sslforfree.com or letsencrypt.org ssl
+    # ssl_certificate     www.domain.xx.crt; # cert or with bundle cert
+    # ssl_certificate_key www.domain.xx.key;
     ...
 }
 ```
