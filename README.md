@@ -50,7 +50,7 @@ exit
 ### Apt https
 ```bash
 # Install tools
-sudo apt install apt-transport-https net-tools git curl openssl mate-tweak
+sudo apt install apt-transport-https net-tools dnsutils git curl openssl mate-tweak
 
 # Remove package
 sudo apt remove avahi-daemon
