@@ -1,5 +1,5 @@
 # Debian 10 Mate desktop install
-How to install Debian 10 mate desktop with WiFi, LEMP server, firewall and sublime text 3 editor.
+How to install Debian 10 mate desktop with Wifi, LEMP web server and firewall.
 
 ## Create bootable USB from distro iso (as root user)
 ```diff
@@ -293,10 +293,28 @@ export PS1="\[\e[32m\][\[\e[m\]\[\e[31m\]\u\[\e[m\]\[\e[33m\]@\[\e[m\]\[\e[32m\]
 ### Themes
 cd; mkdir .themes
 ```bash
+sudo apt install mate-desktop-environment-extras
+sudo apt install arc-theme
 sudo apt install adapta-gtk-theme
+sudo apt install numix-gtk-theme
 ```
 
 ### Icons
+```bash
 cd; mkdir .icons
+
+# install
+sudo apt install gnome-icon-theme
+sudo apt install moka-icon-theme
+sudo apt install numix-icon-theme
+
+# or download
 - https://www.gnome-look.org/p/1284047
 - https://www.gnome-look.org/p/1305251
+```
+
+### Fonts
+```bash
+wget http://mirrors.edge.kernel.org/ubuntu/pool/main/u/ubuntu-font-family-sources/ttf-ubuntu-font-family_0.83-0ubuntu2_all.deb
+sudo dpkg -i ttf-ubuntu-font-family*.deb
+```
