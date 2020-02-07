@@ -200,6 +200,41 @@ server {
 }
 ```
 
+### Nginx cache
+```bash
+proxy_cache_path /path/to/cache levels=1:2 keys_zone=my_cache:10m max_size=10g inactive=60m use_temp_path=off;
+
+server {
+    # ...
+    location / {
+        proxy_cache my_cache;		
+        proxy_cache_revalidate on;
+        proxy_cache_min_uses 3;
+        proxy_cache_use_stale error timeout updating http_500 http_502 http_503 http_504;
+        proxy_cache_background_update on;
+        proxy_cache_lock on;
+
+		# Cache requests types
+		proxy_cache_methods GET HEAD POST;		
+		# No cache with params
+		proxy_cache_bypass $cookie_nocache $arg_nocache;
+		# Add cache status
+		add_header X-Cache-Status $upstream_cache_status;
+
+		# Stream
+        proxy_pass http://my_upstream;
+    }
+
+	location /images/ {
+		proxy_cache my_cache;
+		# Ignore client Cache-Controll:
+		proxy_ignore_headers Cache-Control;
+		proxy_cache_valid any 30m;
+		# ...
+	}
+}
+```
+
 ### Test Ssl cert
 ```bash
 openssl s_client -connect domain.xx:443
