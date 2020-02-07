@@ -79,7 +79,7 @@ sudo apt install sublime-text
 # Install
 sudo apt install firmware-b43-installer
 sudo apt install firmware-b43legacy-installer
-sudo apt install firmware-brcm8211
+sudo apt install firmware-brcm80211
 sudo apt install firmware-iwlwifi
 sudo modprobe -r iwlwifi
 sudo modprobe iwlwifi
@@ -106,7 +106,18 @@ sudo apt install nginx php-fpm php-mysql php-gd php-json php-curl php-mbstring m
 sudo systemctl restart nginx
 sudo systemctl restart php7.3-fpm
 
-# Secure mysql
+# Add mysql root user
+sudo mysql
+
+# Create or update user in mysql>
+GRANT ALL ON *.* TO 'root'@'localhost' IDENTIFIED BY 'toor' WITH GRANT OPTION;
+GRANT ALL ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;
+FLUSH PRIVILEGES;
+
+# Exit from mysql>
+exit;
+
+# Secure mysql server
 sudo mysql_secure_installation
 
 # Host folder
