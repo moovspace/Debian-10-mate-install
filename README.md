@@ -115,7 +115,7 @@ GRANT ALL ON *.* TO 'root'@'127.0.0.1' IDENTIFIED BY 'toor' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 
 # Exit from mysql>
-exit;
+exit
 
 # Secure mysql server
 sudo mysql_secure_installation
