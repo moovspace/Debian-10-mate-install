@@ -144,6 +144,11 @@ server {
     # Domain, host
     server_name domain.xx www.domain.xx;
 
+    location = /favicon.ico {
+        # root /favicon;
+        rewrite . /favicon/favicon.ico;
+    }
+
     location / {
         # Get file or folder or error
         # try_files $uri $uri/ =404;
