@@ -343,14 +343,19 @@ sudo apt install numix-gtk-theme
 ```bash
 cd; mkdir .icons
 
+# Awesome
+https://www.gnome-look.org/s/Gnome/p/1333376
+https://www.gnome-look.org/s/Gnome/p/1300159
+https://www.gnome-look.org/s/Gnome/p/1327720
+
 # install
 sudo apt install gnome-icon-theme
 sudo apt install moka-icon-theme
 sudo apt install numix-icon-theme
 
 # or download
-- https://www.gnome-look.org/p/1284047
-- https://www.gnome-look.org/p/1305251
+https://www.gnome-look.org/p/1284047
+https://www.gnome-look.org/p/1305251
 ```
 
 ### Fonts
