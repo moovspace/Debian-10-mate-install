@@ -72,3 +72,9 @@ net.ipv6.tcp_rfc1337 = 1
 # net.ipv4.eth0.proxy_arp = 1
 # net.ipv4.eth1.proxy_arp = 1
 ```
+
+### Bash script autoload
+```bash
+sudo cp firewall.sh /etc/init.d/
+sudo update-rc.d firewall.sh defaults 90
+```
