@@ -137,3 +137,4 @@ sudo iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
 ### http://www.physd.amu.edu.pl/~m_jurga/pld/firewall/
 ### https://morfikov.github.io/post/firewall-na-linuxowe-maszyny-klienckie/
 ### https://forum.dug.net.pl/viewtopic.php?id=30503
+### https://www.theurbanpenguin.com/rp_filter-and-lpic-3-linux-security/
