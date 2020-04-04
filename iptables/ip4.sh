@@ -5,18 +5,28 @@
 # sudo tail -f /var/log/kern.log
 # Show iptables
 # sudo iptables -t raw -L -v
-# Firewall
-# http://jazz.tvtom.pl/iptables-prosty-skuteczny-firewall/
+## Edit file
+# /etc/sysctl.conf
 
 ## Mods
 modprobe ipt_LOG
+echo "2048" > /proc/sys/net/ipv4/tcp_max_syn_backlog
+echo "2" > /proc/sys/net/ipv4/tcp_synack_retries
+echo "0" > /proc/sys/net/ipv4/ip_forward
 echo "1" > /proc/sys/net/ipv4/icmp_echo_ignore_all
 echo "1" > /proc/sys/net/ipv4/icmp_echo_ignore_broadcasts
 echo "1" > /proc/sys/net/ipv4/icmp_ignore_bogus_error_responses
-echo "1" > /proc/sys/net/ipv4/conf/all/log_martians
+echo "1" > /proc/sys/net/ipv4/tcp_rfc1337
+echo "1" > /proc/sys/net/ipv4/tcp_syncookies
 echo "0" > /proc/sys/net/ipv4/conf/all/accept_source_route
 echo "0" > /proc/sys/net/ipv4/conf/all/accept_redirects
+echo "0" > /proc/sys/net/ipv4/conf/all/send_redirects
+echo "1" > /proc/sys/net/ipv4/conf/all/log_martians
 echo "1" > /proc/sys/net/ipv4/conf/all/rp_filter
+echo "1" > /proc/sys/net/ipv4/conf/all/secure_redirects
+# Dla routera
+# echo "1" > /proc/sys/net/ipv4/eth0/proxy_arp
+# echo "1" > /proc/sys/net/ipv4/eth1/proxy_arp
 
 ## Clear
 sudo iptables -F
@@ -122,7 +132,8 @@ sudo iptables -A INPUT -j DROP
 sudo iptables -A OUTPUT -p icmp --icmp-type echo-reply -j DROP
 
 
+### https://nfsec.pl/security/61
+### http://jazz.tvtom.pl/iptables-prosty-skuteczny-firewall/
 ### http://www.physd.amu.edu.pl/~m_jurga/pld/firewall/
 ### https://morfikov.github.io/post/firewall-na-linuxowe-maszyny-klienckie/
-### http://jazz.tvtom.pl/iptables-prosty-skuteczny-firewall/
 ### https://forum.dug.net.pl/viewtopic.php?id=30503
