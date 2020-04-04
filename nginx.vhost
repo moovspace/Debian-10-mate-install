@@ -1,65 +1,101 @@
 ### API.XX
 server {
-    # max post upload
-	client_max_body_size 100M;
-
+	limit_req_zone $binary_remote_addr zone=one:10m rate=5r/s;
+	server_tokens  off;
+	keepalive_timeout 30;
+	
+	sendfile on;	
+	send_timeout 10;	
+	
+	client_max_body_size 100M; # max post upload
+	client_body_buffer_size 128k;
 	client_header_timeout 3000;
-	client_body_timeout 3000;
+	client_body_timeout 3000;	
+	
 	fastcgi_read_timeout 3000;
 	fastcgi_buffers 8 128k;
 	fastcgi_buffer_size 128k;
+		
+	add_header Strict-Transport-Security max-age=15768000;
+	add_header X-Content-Type-Options nosniff;	
+	add_header X-Frame-Options "SAMEORIGIN";
+	# add_header X-Frame-Options DENY;
+	
+	listen 80;
+	listen [::]:80;
 
-    listen 80;
-    listen [::]:80;
+	# Document dir
+	root /var/www/html/api.xx;
 
-    # Document dir
-    root /var/www/html/api.xx;
+	# Run first
+	index index.php index.html;
 
-    # Run first
-    index index.php index.html;
+	# Domain, host
+	server_name api.xx www.api.xx;
 
-    # Domain, host
-    server_name api.xx www.api.xx;
+	location = /favicon.ico {
+		rewrite . /favicon/favicon.ico;
+	}
 
-    location = /favicon.ico {
-        rewrite . /favicon/favicon.ico;
-    }
+	location / {
+		# Get file or folder or error
+		# try_files $uri $uri/ =404;
 
-    location / {
-        # Get file or folder or error
-        # try_files $uri $uri/ =404;
+		# Get file or folder or redirect uri to url param in index.php
+		try_files $uri $uri/ /index.php?url=$uri&$args;
 
-        # Get file or folder or redirect uri to url param in index.php
-        try_files $uri $uri/ /index.php?url=$uri&$args;
-        
-        # Wordpress
-        # try_files $uri $uri/ /index.php$is_args$args;
-    }
+		# Wordpress
+		# try_files $uri $uri/ /index.php$is_args$args;
+	}
 
-    location ~ \.php$ {
-        # Php-fpm
-        include snippets/fastcgi-php.conf;
-        fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
-    }
+	location ~ \.php$ {
+		# Php-fpm
+		include snippets/fastcgi-php.conf;
+		fastcgi_pass unix:/var/run/php/php7.3-fpm.sock;
+	}
 }
 
 # SSL
 worker_processes auto;
+
 http {
-    ssl_session_cache   shared:SSL:5m;
-    ssl_session_timeout 10m;
+	ssl_ecdh_curve      secp384r1;
+	ssl_session_cache   shared:SSL:5m;
+	ssl_session_timeout 10m;
+	
+	server {
+		listen              443 ssl;
+		server_name         api.xx www.api.xx;
+		keepalive_timeout   60;
 
-    server {
-        listen              443 ssl;
-        server_name         api.xx www.api.xx;
-        keepalive_timeout   70;
+		ssl_certificate     api.xx.crt;
+		ssl_certificate_key api.xx.key;		
+		ssl_protocols       TLSv1.1 TLSv1.2 TLSv1.3;		
+		ssl_ciphers         HIGH:!aNULL:!MD5;
+		ssl_prefer_server_ciphers on;
+		# ssl_ciphers         EECDH+AESGCM:EDH+AESGCM:AES256+EECDH:AES256+EDH;		
+		# ssl_session_tickets       off;
+		# ssl_stapling              on; #ensure your cert is capable
+		# ssl_stapling_verify       on; #ensure your cert is capable
+		
+		add_header Strict-Transport-Security "max-age=63072000; includeSubdomains; preload";
+		add_header X-Content-Type-Options nosniff;	
+		add_header X-Frame-Options "SAMEORIGIN";
+		# add_header X-Frame-Options DENY;
+		
+	...
 
-        ssl_certificate     www.example.com.crt;
-        ssl_certificate_key www.example.com.key;
-        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2;
-        ssl_ciphers         HIGH:!aNULL:!MD5;
-        
-        ...
-        
-   }
+	}
 }
+
+## /etc/nginx/proxy.conf
+# https://docs.microsoft.com/pl-pl/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-3.1
+proxy_redirect          off;
+proxy_set_header        Host $host;
+proxy_set_header        X-Real-IP $remote_addr;
+proxy_set_header        X-Forwarded-For $proxy_add_x_forwarded_for;
+proxy_set_header        X-Forwarded-Proto $scheme;
+proxy_connect_timeout   90;
+proxy_send_timeout      90;
+proxy_read_timeout      90;
+proxy_buffers           32 4k;
