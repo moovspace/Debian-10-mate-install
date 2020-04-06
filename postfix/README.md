@@ -27,7 +27,15 @@ smtpd_tls_loglevel = 1
 smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache
 smtpd_tls_session_cache_timeout = 3600s
 
-smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+# Relay ban
+smtpd_relay_restrictions = permit_mynetworks, permit_sasl_authenticated, reject_unauth_destination, defer_unauth_destination
+
+# Recipient
+smtpd_recipient_restrictions = permit_mynetworks, reject_unknown_helo_hostname, reject_unauth_destination, defer_unauth_destination
+
+# Block clients that speak too early.
+smtpd_data_restrictions = reject_unauth_pipelining
+
 myhostname = vege.xx
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
@@ -43,5 +51,5 @@ inet_protocols = all
 ```
 
 ### Links
-https://zurgl.com/how-to-configure-tls-encryption-in-postfix/
-https://www.gigaone.pl/wsparcie-techniczne/instalacja-certyfikatu-ssl/postfix
+- https://zurgl.com/how-to-configure-tls-encryption-in-postfix/
+- https://www.gigaone.pl/wsparcie-techniczne/instalacja-certyfikatu-ssl/postfix
