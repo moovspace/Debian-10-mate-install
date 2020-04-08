@@ -40,14 +40,23 @@ myhostname = vege.xx
 alias_maps = hash:/etc/aliases
 alias_database = hash:/etc/aliases
 myorigin = /etc/mailname
-mydestination = $myhostname, vege.xx, domain.xx, localhost
+
+# Local smtp emails domains
+# mydestination = $myhostname, vege.xx, domain.xx, localhost
+
+# Send only smtp server
+mydestination = localhost
+
+# Disable relay
 relayhost =
+
+# Allow from
 mynetworks = 127.0.0.0/8 [::1]/128
-mailbox_size_limit = 0
-recipient_delimiter = +
 inet_interfaces = all
 inet_protocols = all
 
+mailbox_size_limit = 0
+recipient_delimiter = +
 ```
 
 ### Links
