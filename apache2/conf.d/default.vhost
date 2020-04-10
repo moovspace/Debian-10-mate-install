@@ -1,0 +1,47 @@
+# sudo mkdir /var/www/html/domain.xx
+# sudo chown -R www-data:username /var/www/html/domain.xx
+# sudo chmod -R 775 /var/www/html/domain.xx
+
+<VirtualHost *:80>
+    ServerName domain.xx
+    ServerAlias www.domain.xx
+    DocumentRoot /var/www/html/domain.xx
+    Redirect permanent / https://domain.xx/
+    
+    # RewriteEngine On
+    # RewriteCond %{HTTPS} !=on
+    # RewriteRule ^/?(.*) https://%{SERVER_NAME}/$1 [R,L] 
+</VirtualHost> 
+
+<VirtualHost *:443>
+    ServerName domain.xx
+    ServerAlias www.domain.xx
+    DocumentRoot /var/www/html/domain.xx
+
+    <Directory /var/www/wordpress/html/>
+        Options -Indexes FollowSymLinks MultiViews        
+        AllowOverride All
+        Require all granted
+        
+        # Wordpress
+        <IfModule mod_rewrite.c>
+            RewriteEngine On            
+            RewriteBase /
+            RewriteCond %{REQUEST_FILENAME} !-f
+            RewriteCond %{REQUEST_FILENAME} !-d
+            RewriteRule . /index.php [L]
+        </IfModule>
+    </Directory>
+
+    ServerAdmin webmaster@domain.xx
+    ErrorLog /var/log/domain.xx.log
+    CustomLog /var/log/domain.xx.custom.log combined
+
+    SSLEngine on
+    SSLCertificateKeyFile /path/to/private.key
+    SSLCertificateFile /path/to/cert.pem
+    SSLProtocol all -SSLv3 -TLSv1 -TLSv1.1
+
+    # Include cache, headers, expires
+    # Include conf.d/*.conf
+</VirtualHost>
