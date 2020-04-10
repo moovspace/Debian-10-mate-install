@@ -60,3 +60,8 @@ a2ensite domain.xx.conf
 a2dissite domain.xx
 a2dissite domain.xx.conf
 ```
+
+### Apache2 configtest
+```bash
+apache2ctl configtest
+```
