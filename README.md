@@ -148,6 +148,11 @@ server {
         # root /favicon;
         rewrite . /favicon/favicon.ico;
     }
+    
+    location ~ /(Cache|vendor|.git) {
+	deny all;
+    	return 404;
+    }
 
     location / {
         # Get file or folder or error
