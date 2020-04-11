@@ -127,6 +127,11 @@ mkdir -p /var/www/html/domain.xx
 sudo chown -R $USER:$USER /var/www/html
 sudo chmod -R 775 /var/www/html
 ```
+### Nginx test config
+```bash
+sudo nginx -t
+sudo nginx -T
+```
 
 ### Nginx domain virtualhost
 sudo nano /etc/nginx/sites-available/default
@@ -172,6 +177,11 @@ server {
         # fastcgi_pass 127.0.0.1:9000;
         # fastcgi_index index.php;        
         # include fastcgi_params;
+    }
+    
+    location ~* \.(html|js|css|png|jpg|jpeg|gif|ico|svg|flv|pdf|mp3|mp4|mov)$ {
+    	expires 1d;
+    	add_header Cache-Control "public, no-transform";
     }
 }
 ```
