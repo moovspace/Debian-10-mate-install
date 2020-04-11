@@ -379,5 +379,5 @@ wget http://mirrors.edge.kernel.org/ubuntu/pool/main/u/ubuntu-font-family-source
 sudo dpkg -i ttf-ubuntu-font-family*.deb
 ```
 
-### Thene Abbys Rainbow
+### Theme Abbys Rainbow
 <img src="https://raw.githubusercontent.com/moovspace/Debian-10-mate-install/master/Abbys-Rainbow.png" width="100%">
