@@ -45,6 +45,15 @@ user ALL=(ALL:ALL) ALL
 
 # Logout root
 exit
+
+# Cron skrypt
+# www-data ALL=(ALL:ALL) NOPASSWD:/root/script.sh
+# %www-data ALL=(ALL:ALL) NOPASSWD:/root/script.php
+# Kilka
+# user ALL = (ALL) NOPASSWD: /var/www/html/sql/backup.php, PASSWD: /bin/kill, NOEXEC: /usr/bin/less
+# Lub wszystkie
+# user ALL=(ALL:ALL) NOPASSWD: ALL
+# %user ALL=(ALL:ALL) NOPASSWD: ALL
 ```
 
 ### Apt https
