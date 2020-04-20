@@ -17,6 +17,10 @@ dd  if=debian.iso of=/dev/sdb
 dd  if=debian.iso of=/dev/sdb1
 ```
 
+### Unpack firmware to usb /firmware directory from
+https://cdimage.debian.org/cdimage/unofficial/non-free/firmware/buster/current/firmware.tar.gz
+
+
 ### Install debian 10
 ```diff
 ! Advanced Options -> Graphical Expert install -> in -> Software selection select:
@@ -59,7 +63,9 @@ exit
 ### Apt https
 ```bash
 # Install tools
-sudo apt install apt-transport-https net-tools dnsutils git curl openssl mate-tweak
+sudo apt install apt-transport-https
+sudo apt update
+sudo apt install net-tools dnsutils git curl openssl mate-tweak
 
 # Remove package
 sudo apt remove avahi-daemon
@@ -313,6 +319,7 @@ sudo nano /etc/default/ufw
 IPV6=YES
 
 # Add rules
+sudo ufw logging on
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 
@@ -343,6 +350,22 @@ sudo ufw status verbose
 sudo ip addr
 ```
 
+### Dns (set in firefox dns with tls)
+nano /etc/resolv.conf
+```bash
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+```
+
+### Secure resolv.conf file
+```bash
+# Disable write
+chattr +i /etc/resolv.conf
+
+# Enable write
+# chattr -i /etc/resolv.conf
+```
+
 ### For more
 https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-debian-10
 
@@ -364,9 +387,8 @@ sudo apt install numix-gtk-theme
 ```
 
 ### Icons
-```bash
 cd; mkdir .icons
-
+```bash
 # Awesome
 https://www.gnome-look.org/s/Gnome/p/1333376
 https://www.gnome-look.org/s/Gnome/p/1300159
