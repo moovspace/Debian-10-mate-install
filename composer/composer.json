@@ -1,0 +1,32 @@
+{
+    "name": "moovspace/vege.love",
+    "description": "Good web page.",
+    "type": "package",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Moov",
+            "email": "moovspace@github.com"
+        }
+    ],
+    "require": {
+      "phpmailer/phpmailer": "^6.1",
+      "php": ">=7.3",
+      "ext-mbstring": "*",
+      "ext-curl": "*",
+      "ext-json": "*",
+      "moovspace/payu": "^3.0"
+    },
+    "repositories": [
+      {
+        "type": "vcs",
+        "url": "https://github.com/moovspace/payu"
+      }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Woo\\": "src/"
+        }
+    }
+}
