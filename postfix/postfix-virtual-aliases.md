@@ -31,6 +31,9 @@ postmap /etc/postfix/virtual
 ## Add or change
 sudo nano /etc/postfix/main.cf
 ```
+# Trusted networks (default: 127.0.0.0/8 192.168.0.0/24 [::1]/128 [fe80::]/64)
+mynetworks = 127.0.0.0/8 192.168.0.0/24 [::1]/128
+
 # Only ip4 (default: all)
 inet_protocols = ipv4
 
