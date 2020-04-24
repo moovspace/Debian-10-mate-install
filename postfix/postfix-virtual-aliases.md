@@ -26,8 +26,14 @@ postmap /etc/postfix/virtual
 ```
 
 ## Add or change
-sudo nano etc/postfix/main.cf
+sudo nano /etc/postfix/main.cf
 ```
+# Only ip4 (default: all)
+inet_protocols = ipv4
+
+# Recive from (default: all)
+inet_interfaces = 127.0.0.1, [::1]
+
 # Set domain
 mydestination = woo.xx, domain.xx, $myhostname, localhost
 
