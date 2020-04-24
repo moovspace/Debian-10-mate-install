@@ -1,7 +1,4 @@
-# Postfix virtual aliases catch-all.
-Postfix smtp server with virtual aliases, deny relay, catch-all and firewall send only smtp.
-
-## Install smtp server
+# Install smtp server
 ```
 # Install smtp
 sudo apt install postfix
@@ -34,9 +31,6 @@ postmap /etc/postfix/virtual
 ## Add or change
 sudo nano /etc/postfix/main.cf
 ```
-# The list of "trusted" remote SMTP clients
-mynetworks = 127.0.0.0/8 192.168.0.0/24 [::1]/128
-
 # Only ip4 (default: all)
 inet_protocols = ipv4
 
