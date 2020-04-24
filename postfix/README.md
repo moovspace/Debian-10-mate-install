@@ -52,8 +52,15 @@ relayhost =
 
 # Allow from
 mynetworks = 127.0.0.0/8 [::1]/128
-inet_interfaces = all
-inet_protocols = all
+
+# inet_interfaces = all
+# inet_protocols = all
+
+# Only ip4 (default: all)
+inet_protocols = ipv4
+# Recive from (default: all)
+inet_interfaces = 127.0.0.1, [::1]
+
 
 mailbox_size_limit = 0
 recipient_delimiter = +
