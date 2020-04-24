@@ -8,6 +8,12 @@ sudo apt install postfix
 
 # Install mail client
 sudo apt install mailutils
+
+# Test postfix
+sudo postconf mail_version
+
+# Test config
+sudo postconf -d
 ```
 
 # Postfix virtual users catchall emails
@@ -28,6 +34,9 @@ postmap /etc/postfix/virtual
 ## Add or change
 sudo nano /etc/postfix/main.cf
 ```
+# The list of "trusted" remote SMTP clients
+mynetworks = 127.0.0.0/8 192.168.0.0/24 [::1]/128
+
 # Only ip4 (default: all)
 inet_protocols = ipv4
 
