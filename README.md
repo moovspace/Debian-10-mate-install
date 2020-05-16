@@ -115,7 +115,7 @@ sudo iwlist wlp2s0b1 scan
 ### Lemp (nginx, php, mariadb)
 ```bash
 # Install
-sudo apt install nginx php-fpm php-mysql php-gd php-json php-curl php-mbstring mariadb-server
+sudo apt install nginx php-fpm php-mysql php-gd php-json php-curl php-mbstring php-xml mariadb-server
 
 # Restart service
 sudo systemctl restart nginx
